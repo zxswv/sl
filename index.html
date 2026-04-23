@@ -1270,31 +1270,50 @@
         <h3 id="sec-6-4">6.4 画面イメージ（スクリーンショット）</h3>
         <p>以下の画像は、実際の画面構成を把握しやすくするための参考資料である。</p>
 
-        <figure>
-          <img src="./タイムライン.png" alt="予約状況タイムライン" data-height-listener-added="true">
-          <figcaption>予約状況タイムライン</figcaption>
-        </figure>
+<section>
+  <figure>
+    <img src="./タイムライン.png" alt="予約状況タイムライン" data-height-listener-added="true" onclick="openModal(this)" style="max-width: 300px; cursor: pointer;">
+    <figcaption>予約状況タイムライン（クリックで拡大）</figcaption>
+  </figure>
 
-        <figure>
-          <img src="./予約情報の入力.png" alt="予約情報の入力ダイアログ" data-height-listener-added="true">
-          <figcaption>予約情報の入力ダイアログ</figcaption>
-        </figure>
+  <figure>
+    <img src="./予約情報の入力.png" alt="予約情報の入力ダイアログ" data-height-listener-added="true" onclick="openModal(this)" style="max-width: 300px; cursor: pointer;">
+    <figcaption>予約情報の入力ダイアログ（クリックで拡大）</figcaption>
+  </figure>
 
-        <figure>
-          <img src="./予約できた画面.png" alt="予約済みスロット表示例" data-height-listener-added="true">
-          <figcaption>予約済みスロット表示例</figcaption>
-        </figure>
+  <figure>
+    <img src="./予約できた画面.png" alt="予約済みスロット表示例" data-height-listener-added="true" onclick="openModal(this)" style="max-width: 300px; cursor: pointer;">
+    <figcaption>予約済みスロット表示例（クリックで拡大）</figcaption>
+  </figure>
 
-        <figure>
-          <img src="./予約ログ.png" alt="予約履歴画面" data-height-listener-added="true">
-          <figcaption>予約履歴画面</figcaption>
-        </figure>
+  <figure>
+    <img src="./予約ログ.png" alt="予約履歴画面" data-height-listener-added="true" onclick="openModal(this)" style="max-width: 300px; cursor: pointer;">
+    <figcaption>予約履歴画面（クリックで拡大）</figcaption>
+  </figure>
 
-        <figure>
-          <img src="./予約了承管理画面.png" alt="予約承認管理画面" data-height-listener-added="true">
-          <figcaption>予約承認管理画面</figcaption>
-        </figure>
-      </section>
+  <figure>
+    <img src="./予約了承管理画面.png" alt="予約承認管理画面" data-height-listener-added="true" onclick="openModal(this)" style="max-width: 300px; cursor: pointer;">
+    <figcaption>予約承認管理画面（クリックで拡大）</figcaption>
+  </figure>
+</section>
+
+<dialog id="imageModal" onclick="this.close()" style="border: none; padding: 0; background: transparent; max-width: 90vw; max-height: 90vh;">
+  <img id="modalImage" src="" alt="" style="max-width: 100%; max-height: 90vh; display: block; margin: auto; cursor: zoom-out;">
+</dialog>
+
+<script>
+  function openModal(imgElement) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    
+    // クリックされた画像のパス(src)と代替テキスト(alt)を、ダイアログ内の画像にセット
+    modalImg.src = imgElement.src;
+    modalImg.alt = imgElement.alt + " 拡大";
+    
+    // ダイアログを表示
+    modal.showModal();
+  }
+</script>
 
       <section id="sec-7">
         <h2>7. 主要コンポーネント</h2>
