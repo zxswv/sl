@@ -1,8 +1,11 @@
-<!DOCTYPE html>
-<html lang="ja" data-theme="light" style=""><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NPG - 教室予約管理Webアプリケーション 開発ドキュメント</title>
+<!doctype html>
+<html lang="ja" data-theme="light" style="">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>
+      NPG - 教室予約管理Webアプリケーション | 就職活動提出用ポートフォリオ
+    </title>
     <style>
       :root {
         --primary-color: #4a6572;
@@ -20,7 +23,9 @@
         padding: 32px 80px;
         position: relative;
         box-sizing: border-box;
-        font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+        font-family:
+          "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+          Meiryo, sans-serif;
         background-color: var(--bg-color);
         color: var(--text-color);
         line-height: 1.6;
@@ -43,16 +48,26 @@
         border-bottom: 2px solid var(--primary-color);
         padding-bottom: 0.2em;
       }
+
+      .doc-title {
+        font-size: 2em;
+        border-bottom: 2px solid var(--primary-color);
+        padding-bottom: 0.2em;
+        margin-top: 2.5em;
+      }
+
       h2 {
         font-size: 1.5em;
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 0.2em;
         color: var(--primary-color);
       }
+
       h3 {
         font-size: 1.25em;
         margin-top: 1.2em;
       }
+
       h4 {
         font-size: 1.1em;
       }
@@ -60,9 +75,6 @@
       a {
         color: var(--link-color);
         text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
       }
 
       .meta-card {
@@ -86,32 +98,44 @@
         color: var(--primary-color);
       }
 
-      .user-report {
-        display: block;
-        background-color: #f4f7f8;
-        border-left: 4px solid var(--primary-color);
-        padding: 1em;
-        font-size: 0.95em;
-        color: #333;
-        margin: 1.5em 0;
-        border-radius: 0 4px 4px 0;
+      .lead {
+        margin: 0 0 1.25rem;
+        color: #4f5d68;
+        font-size: 1rem;
       }
-      .user-report-label {
-        font-weight: bold;
+
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 2rem;
+      }
+      .summary-item {
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        padding: 1rem;
+        background: #f8fbfc;
+      }
+      .summary-item h3 {
+        margin: 0 0 0.4rem;
+        font-size: 1rem;
         color: var(--primary-color);
-        margin-bottom: 0.5em;
-        display: inline-block;
+      }
+      .summary-item p {
+        margin: 0;
+        font-size: 0.95rem;
       }
 
       .table-wrap {
         width: 100%;
-        overflow-x: auto;
         margin-bottom: 1.5rem;
       }
       table {
         width: 100%;
         border-collapse: collapse;
         font-size: 0.9em;
+        table-layout: fixed;
+        word-wrap: break-word;
       }
       th,
       td {
@@ -150,10 +174,9 @@
         border: 1px solid var(--border-color);
         border-radius: 4px;
         background-color: #fafbfc;
-        overflow-x: auto;
       }
       .diagram-card svg {
-        min-width: 760px;
+        width: 100%;
         height: auto;
         display: block;
       }
@@ -168,8 +191,8 @@
         padding: 1rem;
         border: 1px solid var(--border-color);
         border-radius: 4px;
-        white-space: pre;
-        overflow-x: auto;
+        white-space: pre-wrap;
+        word-wrap: break-word;
         font-size: 0.9em;
       }
       code {
@@ -227,6 +250,9 @@
           max-width: none;
           background-color: #fff;
         }
+        .summary-grid {
+          grid-template-columns: 1fr 1fr;
+        }
         .toc {
           page-break-after: always;
         }
@@ -238,7 +264,6 @@
         pre,
         img,
         .meta-card,
-        .user-report,
         .diagram-card {
           page-break-inside: avoid;
         }
@@ -246,20 +271,16 @@
           color: #000;
           text-decoration: none;
         }
-        .table-wrap {
-          overflow-x: visible;
-        }
-        pre {
-          white-space: pre-wrap;
-          word-wrap: break-word;
-        }
       }
     </style>
-
   </head>
   <body style="">
     <header>
-      <h1>NPG - 教室予約管理Webアプリケーション 開発ドキュメント</h1>
+      <h1>NPG - 教室予約管理Webアプリケーション</h1>
+      <p class="lead">
+        就職活動提出用ポートフォリオとして、設計・実装・改善プロセスが伝わるように整理した開発ドキュメントです。
+      </p>
+
       <div class="meta-card">
         <ul>
           <li><strong>プロジェクト名:</strong> <code>npg</code></li>
@@ -268,105 +289,263 @@
           <li><strong>言語設定:</strong> 日本語 (ja)</li>
           <li>
             <strong>リポジトリ:</strong>
-            <a href="https://github.com/zxswv/npg" target="_blank" rel="noopener noreferrer">https://github.com/zxswv/npg</a>
+            <a
+              href="https://github.com/zxswv/npg"
+              target="_blank"
+              rel="noopener noreferrer"
+              >https://github.com/zxswv/npg</a
+            >
           </li>
-          <li>
-            <strong>開発手法:</strong> アジャイル開発 <span style="font-size: 0.8em; color: #666">(ユーザー申告)</span>
-          </li>
-          <li><strong>作成日:</strong> 2026-04-21 <span style="font-size: 0.8em; color: #666">(HTML変換日)</span></li>
+          <li><strong>開発手法:</strong> アジャイル開発</li>
+          <li><strong>作成日:</strong> 2026-05-11</li>
         </ul>
+      </div>
+
+      <h2>このプロジェクトのポイント</h2>
+      <div class="summary-grid">
+        <section class="summary-item">
+          <h3>担当範囲</h3>
+          <p>
+            現行版では、設計・実装・改善を本人が主体となって担当したプロジェクトです。
+          </p>
+        </section>
+        <section class="summary-item">
+          <h3>主な技術</h3>
+          <p>
+            Next.js / TypeScript / Prisma / PostgreSQL / Docker
+            を用いて、フロントエンドからAPI・DBまで一貫して構築しています。
+          </p>
+        </section>
+        <section class="summary-item">
+          <h3>課題解決</h3>
+          <p>
+            教室予約をタイムラインで可視化し、予約申請・承認・履歴確認までを一つのWebアプリで完結できるようにしました。
+          </p>
+        </section>
+        <section class="summary-item">
+          <h3>アピールポイント</h3>
+          <p>
+            現場フィードバックを取り入れながら改善し、UI・API・データ設計を一体で見直した点が強みです。
+          </p>
+        </section>
       </div>
     </header>
 
-    <nav class="toc">
-      <h2>目次</h2>
-      <ul>
-        <li><a href="#sec-1">1. プロジェクト概要</a></li>
-        <li><a href="#sec-2">2. 技術スタック</a></li>
-        <li><a href="#sec-3">3. プロジェクト構成</a></li>
-        <li><a href="#sec-4">4. データベース設計</a></li>
-        <li><a href="#sec-5">5. API仕様</a></li>
-        <li><a href="#sec-6">6. 画面構成</a></li>
-        <li><a href="#sec-7">7. 主要コンポーネント</a></li>
-        <li><a href="#sec-8">8. シードデータ</a></li>
-        <li><a href="#sec-9">9. Docker構成</a></li>
-        <li><a href="#sec-10">10. npmスクリプト</a></li>
-        <li><a href="#sec-11">11. 環境構築時に確認できるコマンド</a></li>
-        <li><a href="#sec-12">12. マイグレーション履歴</a></li>
-        <li><a href="#sec-13">13. 就活提出向け補足</a></li>
-        <li><a href="#sec-14">14. 開発体制と進め方（ユーザー申告）</a></li>
-        <li><a href="#sec-15">15. 工夫した点（ユーザー申告）</a></li>
-        <li><a href="#sec-16">16. 苦労した点（ユーザー申告）</a></li>
-        <li><a href="#sec-17">17. ソースコード上で確認できる未実装事項</a></li>
-      </ul>
-    </nav>
-
     <main>
-      <section id="sec-1">
-        <h2>1. プロジェクト概要</h2>
-
-        <h3 id="sec-1-1">基本情報</h3>
+      <section id="summary-process">
+        <h2>プロジェクトの背景と進め方</h2>
         <ul>
-          <li>プロジェクト名: <code>npg</code></li>
-          <li>バージョン: <code>0.1.0</code>（package.json の <code>version</code>）</li>
-          <li>アプリケーション名: 「予約アプリ」</li>
-          <li>言語設定: 日本語</li>
           <li>
-            リポジトリ:
-            <a href="https://github.com/zxswv/npg" target="_blank" rel="noopener noreferrer">https://github.com/zxswv/npg</a>
+            本プロジェクトでは、画面実装だけでなく、API設計・データベース設計・運用を意識した構成まで一貫して取り組んでいます。
           </li>
-          <li>開発手法: <strong>アジャイル開発</strong></li>
+          <li>
+            開発開始時は 5〜6
+            人規模のチーム開発で進めていましたが、その後、現行版の設計・実装・改善を中心となって引き継ぎました。
+          </li>
+          <li>
+            利用者である教員に複数回見せてフィードバックを受け、要件変更に対応しながら画面構成や運用フローを改善しました。実務に近いアジャイルな開発経験として取り組んでいます。
+          </li>
+          <li>
+            Docker、Prisma、Next.js
+            を組み合わせ、開発環境構築からデータ管理まで含めて再現性のある構成を意識しました。
+          </li>
+        </ul>
+      </section>
+
+      <section id="summary-strengths">
+        <h2>工夫した点とアピールポイント</h2>
+        <h3 id="strength-1">現場フィードバックを前提にした改善</h3>
+        <ul>
+          <li>
+            学校で利用する教員に実際に触ってもらい、画面や機能に対するフィードバックを受けて改善を行いました。
+          </li>
+          <li>
+            初期段階ではカレンダーベースの予約画面を想定していましたが、フィードバックを踏まえて部屋ベースで状況を見られるタイムライン構成へ調整しました。
+          </li>
+          <li>
+            予約申請だけでなく、教員側で確認・承認しやすい管理画面も追加し、UI
+            の見やすさと運用しやすさを優先して改善しています。
+          </li>
         </ul>
 
-        <h3 id="sec-1-2">開発手法に関する補足</h3>
-        <div class="user-report">
-          <span class="user-report-label">個人申告に基づく整理</span>
-          <p>本ドキュメントでは、開発手法をユーザー申告に基づきアジャイル開発として整理する。</p>
-        </div>
-        <p>リポジトリ内の Prisma マイグレーションには以下の履歴が存在する。</p>
-        <ol>
-          <li><code>20251003055302_</code></li>
-          <li><code>20251003060729_init</code></li>
-          <li><code>20251005061832_add_reservation_status</code></li>
-          <li><code>20251109074958_add_cancelled_status</code></li>
-        </ol>
-
-        <h3 id="sec-1-3">アプリケーションで確認できた機能</h3>
+        <h3 id="strength-2">データ構造と保守性を意識した設計</h3>
         <ul>
-          <li>タイムライン形式での教室予約状況表示（<code>src/app/timeline/page.tsx</code>）</li>
-          <li>カレンダーによる日付選択（<code>react-day-picker</code> を使用）</li>
-          <li>フロア別フィルター機能（10F / 11F / other の分類。判定は部屋番号 prefix ベース）</li>
-          <li>予約の一括作成（<code>src/app/api/reservations/bulk/route.ts</code>）</li>
           <li>
-            予約ステータス管理（<code>PENDING</code>, <code>APPROVED</code>, <code>REJECTED</code>,
-            <code>CANCELLED</code>）
+            データベース操作には Prisma
+            を採用し、スキーマを見通しやすく保ちながら変更しやすい構成を意識しました。
           </li>
-          <li>管理画面での予約承認・却下（<code>src/app/adminPanel/page.tsx</code>）</li>
-          <li>予約履歴の閲覧・ステータス別表示（<code>src/app/History/page.tsx</code>）</li>
+          <li>
+            <code>schema.prisma</code>
+            にモデル定義を集約することで、部屋・時間枠・予約・ステータスの関係を把握しやすい構成にしています。
+          </li>
+          <li>
+            マイグレーション履歴を通じて、予約ステータスやキャンセル状態の追加を段階的に反映できる構成になっています。
+          </li>
+        </ul>
+      </section>
+
+      <section id="summary-challenges">
+        <h2>直面した課題と学び</h2>
+        <h3 id="challenge-1">予約時間の扱いと重複制御</h3>
+        <ul>
+          <li>予約が重複しないように制御する実装に苦労しました。</li>
+          <li>
+            特に、Docker
+            上のデータベースとクライアント側で扱う日時の基準がずれ、予約処理が意図通りに動かない問題の切り分けに時間を要しました。
+          </li>
+          <li>
+            UTC
+            と日本時間の差異により、ミリ秒単位の差で別時刻として扱われ、フロントエンド上では成功したように見えてもデータベース登録に失敗するケースがあり、日時処理の重要性を学びました。
+          </li>
+        </ul>
+
+        <h3 id="challenge-2">データベース操作からフロントエンドへの連携</h3>
+        <ul>
+          <li>
+            データベースへ保存し、取り出し、その結果を画面へ反映する一連の流れを構築する中で、全体のデータフローを把握することに注力しました。
+          </li>
+          <li>
+            Prisma を通じてどのように PostgreSQL へアクセスし、その結果が
+            Next.js の API を経由して画面に返るのかを実践を通して理解しました。
+          </li>
+          <li>
+            エラー発生時に、原因がフロントエンド・API・ORM・DBのどこにあるのかを切り分けるトラブルシューティングの経験を積むことができました。
+          </li>
+        </ul>
+      </section>
+
+      <section id="summary-future">
+        <h2>今後の展望</h2>
+        <p>
+          今後は、教室予約機能に加えて、校内掲示やイベント情報の共有もオンライン上で完結できるように発展させたいと考えています。
+        </p>
+        <ul>
+          <li>
+            紙で掲示されているチラシや告知をデジタル化し、学生がいつでも確認できる仕組みに広げる。
+          </li>
+          <li>
+            他専攻の学生とも接点を持ちやすくし、校内コミュニケーションや交流のきっかけになるアプリへ発展させる。
+          </li>
+          <li>
+            将来的には学校の後輩へ引き継ぎ、校内で継続利用されるシステムとして育てることを目指しています。
+          </li>
+        </ul>
+      </section>
+
+      <section id="summary-screenshots">
+        <h2>画面イメージ</h2>
+        <p>
+          タイムライン表示、予約申請、承認、履歴確認といった一連の業務フローを
+          Web アプリとして整理しています。
+        </p>
+
+        
+        <figure>
+    <img src="./タイムライン.png" alt="予約状況タイムライン" data-height-listener-added="true" onclick="openModal(this)" cursor: pointer;">
+    <figcaption>予約状況タイムライン（部屋ごとの空き状況を可視化）（クリックで拡大）</figcaption>
+  </figure>
+
+  <figure>
+    <img src="./予約情報の入力.png" alt="予約情報の入力ダイアログ" data-height-listener-added="true" onclick="openModal(this)" cursor: pointer;">
+    <figcaption>予約情報の入力ダイアログ（申請に必要な情報を収集）（クリックで拡大）</figcaption>
+  </figure>
+
+  <figure>
+    <img src="./予約できた画面.png" alt="予約済みスロット表示例" data-height-listener-added="true" onclick="openModal(this)" cursor: pointer;">
+    <figcaption>予約済みスロット表示例（用途や利用者をひと目で確認可能）（クリックで拡大）</figcaption>
+  </figure>
+
+  <figure>
+    <img src="./予約ログ.png" alt="予約履歴画面" data-height-listener-added="true" onclick="openModal(this)" cursor: pointer;">
+    <figcaption>予約履歴画面（ステータスごとのフィルタリングに対応）（クリックで拡大）</figcaption>
+  </figure>
+
+  <figure>
+    <img src="./予約了承管理画面.png" alt="予約承認管理画面" data-height-listener-added="true" onclick="openModal(this)" cursor: pointer;">
+    <figcaption>予約承認管理画面（教員が申請を確認し、承認・却下を行う） （クリックで拡大）</figcaption>
+  </figure>
+</section>
+
+<dialog id="imageModal" onclick="this.close()" style="border: none; padding: 0; background: transparent; max-width: 90vw; max-height: 90vh;">
+  <img id="modalImage" src="" alt="" style="max-width: 100%; max-height: 90vh; display: block; margin: auto; cursor: zoom-out;">
+</dialog>
+
+<script>
+  function openModal(imgElement) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    
+    // クリックされた画像のパス(src)と代替テキスト(alt)を、ダイアログ内の画像にセット
+    modalImg.src = imgElement.src;
+    modalImg.alt = imgElement.alt + " 拡大";
+    
+    // ダイアログを表示
+    modal.showModal();
+  }
+</script>
+
+      <hr />
+
+      <nav class="toc">
+        <h2>目次（技術ドキュメント）</h2>
+        <ul>
+          <li><a href="#sec-1">1. プロジェクト概要</a></li>
+          <li><a href="#sec-2">2. 技術スタック</a></li>
+          <li><a href="#sec-3">3. プロジェクト構成</a></li>
+          <li><a href="#sec-4">4. データベース設計</a></li>
+          <li><a href="#sec-5">5. API仕様</a></li>
+          <li><a href="#sec-6">6. 画面構成</a></li>
+          <li><a href="#sec-7">7. 主要コンポーネント</a></li>
+          <li><a href="#sec-8">8. シードデータ</a></li>
+          <li><a href="#sec-9">9. Docker構成</a></li>
+          <li><a href="#sec-10">10. npmスクリプト</a></li>
+          <li><a href="#sec-11">11. 環境構築時に確認できるコマンド</a></li>
+          <li><a href="#sec-12">12. マイグレーション履歴</a></li>
+        </ul>
+      </nav>
+
+      <h1 class="doc-title" id="technical-document">技術ドキュメント</h1>
+      <p>
+        以下は、ソースコード・設定ファイルに基づく詳細なプロジェクトの技術資料です。
+      </p>
+
+      <section id="sec-1">
+        <h2>1. プロジェクト概要</h2>
+        <h3 id="sec-1-1">アプリケーションで確認できた機能</h3>
+        <ul>
+          <li>
+            タイムライン形式での教室予約状況表示（<code>src/app/timeline/page.tsx</code>）
+          </li>
+          <li>
+            カレンダーによる日付選択（<code>react-day-picker</code> を使用）
+          </li>
+          <li>
+            フロア別フィルター機能（10F / 11F / other の分類。判定は部屋番号
+            prefix ベース）
+          </li>
+          <li>
+            予約の一括作成（<code>src/app/api/reservations/bulk/route.ts</code>）
+          </li>
+          <li>
+            予約ステータス管理（<code>PENDING</code>, <code>APPROVED</code>,
+            <code>REJECTED</code>, <code>CANCELLED</code>）
+          </li>
+          <li>
+            管理画面での予約承認・却下（<code>src/app/adminPanel/page.tsx</code>）
+          </li>
+          <li>
+            予約履歴の閲覧・ステータス別表示（<code>src/app/History/page.tsx</code>）
+          </li>
           <li>予約キャンセル機能（画面によって PATCH または DELETE を使用）</li>
           <li>トースト通知（<code>sonner</code>）</li>
           <li>キャンセル確認ダイアログ（<code>AlertDialog</code>）</li>
         </ul>
       </section>
 
-      <hr>
-
       <section id="sec-2">
         <h2>2. 技術スタック</h2>
 
-        <h3 id="sec-2-1">主要技術アイコン</h3>
-        <p>以下は、技術スタックを視覚的に把握しやすくするための補助表示である。</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem">
-          <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&amp;logo=next.js&amp;logoColor=white" alt="Next.js" style="margin: 0; display: inline-block" data-height-listener-added="true">
-          <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&amp;logo=react&amp;logoColor=61DAFB" alt="React" style="margin: 0; display: inline-block" data-height-listener-added="true">
-          <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&amp;logo=typescript&amp;logoColor=white" alt="TypeScript" style="margin: 0; display: inline-block" data-height-listener-added="true">
-          <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&amp;logo=tailwind-css&amp;logoColor=white" alt="Tailwind CSS" style="margin: 0; display: inline-block" data-height-listener-added="true">
-          <img src="https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&amp;logo=prisma&amp;logoColor=white" alt="Prisma" style="margin: 0; display: inline-block" data-height-listener-added="true">
-          <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&amp;logo=postgresql&amp;logoColor=white" alt="PostgreSQL" style="margin: 0; display: inline-block" data-height-listener-added="true">
-          <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&amp;logo=docker&amp;logoColor=white" alt="Docker" style="margin: 0; display: inline-block" data-height-listener-added="true">
-        </div>
-
-        <h3 id="sec-2-2">フロントエンド</h3>
+        <h3 id="sec-2-1">フロントエンド</h3>
         <div class="table-wrap">
           <table>
             <thead>
@@ -398,59 +577,9 @@
                 <td>スタイリング</td>
               </tr>
               <tr>
-                <td>@radix-ui/react-alert-dialog</td>
-                <td>^1.1.15</td>
-                <td>ダイアログUI</td>
-              </tr>
-              <tr>
-                <td>@radix-ui/react-avatar</td>
-                <td>^1.1.10</td>
-                <td>Avatar UI</td>
-              </tr>
-              <tr>
-                <td>@radix-ui/react-dialog</td>
-                <td>^1.1.15</td>
-                <td>ダイアログUI</td>
-              </tr>
-              <tr>
-                <td>@radix-ui/react-dropdown-menu</td>
-                <td>^2.1.15</td>
-                <td>メニューUI</td>
-              </tr>
-              <tr>
-                <td>@radix-ui/react-label</td>
-                <td>^2.1.7</td>
-                <td>Label UI</td>
-              </tr>
-              <tr>
-                <td>@radix-ui/react-scroll-area</td>
-                <td>^1.2.10</td>
-                <td>スクロール領域</td>
-              </tr>
-              <tr>
-                <td>@radix-ui/react-select</td>
-                <td>^2.2.5</td>
-                <td>Select UI</td>
-              </tr>
-              <tr>
-                <td>@radix-ui/react-slot</td>
-                <td>^1.2.3</td>
-                <td>Slot UI</td>
-              </tr>
-              <tr>
-                <td>@radix-ui/react-tabs</td>
-                <td>^1.1.13</td>
-                <td>Tabs UI</td>
-              </tr>
-              <tr>
-                <td>@radix-ui/react-toggle</td>
-                <td>^1.1.10</td>
-                <td>Toggle UI</td>
-              </tr>
-              <tr>
-                <td>@radix-ui/react-toggle-group</td>
-                <td>^1.1.11</td>
-                <td>Toggle Group UI</td>
+                <td>@radix-ui/react-*</td>
+                <td>各種</td>
+                <td>ダイアログ、タブなどのUIコンポーネント群</td>
               </tr>
               <tr>
                 <td>lucide-react</td>
@@ -472,31 +601,11 @@
                 <td>^2.0.7</td>
                 <td>トースト通知</td>
               </tr>
-              <tr>
-                <td>next-themes</td>
-                <td>^0.4.6</td>
-                <td>テーマ切替</td>
-              </tr>
-              <tr>
-                <td>class-variance-authority</td>
-                <td>^0.7.1</td>
-                <td>バリアント管理</td>
-              </tr>
-              <tr>
-                <td>clsx</td>
-                <td>^2.1.1</td>
-                <td>className結合</td>
-              </tr>
-              <tr>
-                <td>tailwind-merge</td>
-                <td>^3.3.1</td>
-                <td>Tailwind クラス統合</td>
-              </tr>
             </tbody>
           </table>
         </div>
 
-        <h3 id="sec-2-3">バックエンド</h3>
+        <h3 id="sec-2-2">バックエンド・データベース</h3>
         <div class="table-wrap">
           <table>
             <thead>
@@ -518,11 +627,6 @@
                 <td>DBアクセス</td>
               </tr>
               <tr>
-                <td>@prisma/extension-accelerate</td>
-                <td>^2.0.2</td>
-                <td>Prisma Accelerate 拡張</td>
-              </tr>
-              <tr>
                 <td>PostgreSQL</td>
                 <td>14</td>
                 <td>データベース</td>
@@ -531,47 +635,7 @@
           </table>
         </div>
 
-        <h3 id="sec-2-4">開発ツール</h3>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>技術</th>
-                <th>バージョン</th>
-                <th>用途</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>ESLint</td>
-                <td>^9</td>
-                <td>静的解析</td>
-              </tr>
-              <tr>
-                <td>tsx</td>
-                <td>^4.20.6</td>
-                <td>TypeScript スクリプト実行</td>
-              </tr>
-              <tr>
-                <td>ts-node</td>
-                <td>^10.9.2</td>
-                <td>TypeScript 実行</td>
-              </tr>
-              <tr>
-                <td>tailwindcss-animate</td>
-                <td>^1.0.7</td>
-                <td>アニメーション補助</td>
-              </tr>
-              <tr>
-                <td>tw-animate-css</td>
-                <td>^1.3.4</td>
-                <td>CSS アニメーション</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3 id="sec-2-5">インフラ</h3>
+        <h3 id="sec-2-3">インフラ・開発ツール</h3>
         <div class="table-wrap">
           <table>
             <thead>
@@ -583,279 +647,296 @@
             <tbody>
               <tr>
                 <td>Docker / Docker Compose</td>
-                <td>コンテナ実行</td>
+                <td>コンテナ実行・開発環境構築</td>
               </tr>
               <tr>
-                <td>Dockerfile.next.js</td>
-                <td>開発環境用 Dockerfile</td>
-              </tr>
-              <tr>
-                <td>Dockerfile.next.js.prod</td>
-                <td>本番環境用 Dockerfile</td>
+                <td>ESLint</td>
+                <td>静的解析</td>
               </tr>
             </tbody>
           </table>
         </div>
-
-        <h3 id="sec-2-6">フォント</h3>
-        <ul>
-          <li>Geist Sans（<code>--font-geist-sans</code>）</li>
-          <li>Geist Mono（<code>--font-geist-mono</code>）</li>
-        </ul>
       </section>
-
-      <hr>
 
       <section id="sec-3">
         <h2>3. プロジェクト構成</h2>
-        <p>以下のツリーはリポジトリの実ファイル構成に基づく。</p>
+        <p>以下のツリーはリポジトリの主要なファイル構成です。</p>
         <pre><code>npg/
-├── .gitignore
-├── Dockerfile
-├── Dockerfile.next.js
-├── Dockerfile.next.js.prod
-├── README.md
-├── components.json
 ├── docker-compose.yml
-├── docker-compose-prod.yml
-├── eslint.config.mjs
 ├── next.config.ts
 ├── package.json
-├── package-lock.json
-├── postcss.config.mjs
-├── tsconfig.json
-├── memo/
-│   ├── 本番環境構築.md
-│   └── 環境構築.md
 ├── prisma/
 │   ├── schema.prisma
 │   ├── seed.ts
 │   └── migrations/
-│       ├── 20251003055302_/migration.sql
-│       ├── 20251003060729_init/migration.sql
-│       ├── 20251005061832_add_reservation_status/migration.sql
-│       ├── 20251109074958_add_cancelled_status/migration.sql
-│       └── migration_lock.toml
-├── public/
-│   ├── file.svg
-│   ├── globe.svg
-│   ├── next.svg
-│   ├── vercel.svg
-│   └── window.svg
 └── src/
     ├── lib/
-    │   ├── prisma.ts
-    │   └── utils.ts
-    ├── components/
-    │   └── ui/button.tsx
+    │   └── prisma.ts
     └── app/
-        ├── globals.css
         ├── layout.tsx
         ├── page.tsx
         ├── timeline/
-        │   └── page.tsx
         ├── History/
-        │   └── page.tsx
         ├── adminPanel/
-        │   └── page.tsx
         ├── api/
-        │   ├── API.md
         │   ├── reservations/
-        │   │   ├── route.ts
-        │   │   ├── [id]/route.ts
-        │   │   ├── bulk/route.ts
-        │   │   └── status/route.ts
         │   ├── room/
-        │   │   └── route.ts
         │   └── timeline/
-        │       └── route.ts
         └── components/
-            ├── Login/
-            │   └── Login_page.tsx
             ├── ReservationTimeline/
-            │   └── ReservationTimeline.tsx
-            ├── layouts/header/
-            │   ├── Header.tsx
-            │   ├── akaibu/Header.tsx
-            │   ├── reservation-header.tsx
-            │   └── school-reservation-header.tsx
-            ├── schedule/new/
-            │   └── page.tsx
             ├── timeline/
-            │   ├── DateSelector.tsx
-            │   ├── FloorFilter.tsx
-            │   ├── ReservationControl.tsx
-            │   └── ReservationDialog.tsx
-            └── ui/
-                ├── alert-dialog.tsx
-                ├── avatar.tsx
-                ├── badge.tsx
-                ├── button.tsx
-                ├── calendar.tsx
-                ├── card.tsx
-                ├── dialog.tsx
-                ├── dropdown-menu.tsx
-                ├── input.tsx
-                ├── label.tsx
-                ├── scroll-area.tsx
-                ├── select.tsx
-                ├── sonner.tsx
-                ├── table.tsx
-                ├── tabs.tsx
-                ├── textarea.tsx
-                ├── toggle-group.tsx
-                └── toggle.tsx</code></pre>
+            └── ui/</code></pre>
       </section>
 
       <section id="sec-4">
         <h2>4. データベース設計</h2>
 
         <h3 id="sec-4-1">4.1 ER図</h3>
-        <p><code>prisma/schema.prisma</code> に基づく ER 図。</p>
+        <p><code>prisma/schema.prisma</code> に基づく ER 図です。</p>
         <div class="diagram-card">
-          <svg viewBox="0 0 920 620" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="erDiagramTitle erDiagramDesc">
+          <svg
+            viewBox="0 0 920 620"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-labelledby="erDiagramTitle erDiagramDesc"
+          >
             <title id="erDiagramTitle">教室予約管理アプリのER図</title>
-            <desc id="erDiagramDesc">Schedule と Slot、Slot と Reservation、Room と Reservation の関係を示すER図。</desc>
+            <desc id="erDiagramDesc">
+              Schedule と Slot、Slot と Reservation、Room と Reservation
+              の関係を示すER図。
+            </desc>
             <defs>
-              <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <marker
+                id="arrow"
+                viewBox="0 0 10 10"
+                refX="9"
+                refY="5"
+                markerWidth="7"
+                markerHeight="7"
+                orient="auto-start-reverse"
+              >
                 <path d="M 0 0 L 10 5 L 0 10 z" fill="#4a6572"></path>
               </marker>
             </defs>
 
-            <rect x="40" y="40" width="300" height="150" rx="10" fill="#ffffff" stroke="#4a6572" stroke-width="2"></rect>
-            <rect x="40" y="40" width="300" height="36" rx="10" fill="#e7f0f4"></rect>
-            <text x="60" y="64" font-size="20" font-weight="700" fill="#2f4858">Schedule</text>
+            <rect
+              x="40"
+              y="40"
+              width="300"
+              height="150"
+              rx="10"
+              fill="#ffffff"
+              stroke="#4a6572"
+              stroke-width="2"
+            ></rect>
+            <rect
+              x="40"
+              y="40"
+              width="300"
+              height="36"
+              rx="10"
+              fill="#e7f0f4"
+            ></rect>
+            <text x="60" y="64" font-size="20" font-weight="700" fill="#2f4858">
+              Schedule
+            </text>
             <text x="60" y="102" font-size="16" fill="#333">id : Int [PK]</text>
-            <text x="60" y="130" font-size="16" fill="#333">date : DateTime [UK]</text>
-            <text x="60" y="158" font-size="16" fill="#333">createdAt : DateTime</text>
+            <text x="60" y="130" font-size="16" fill="#333">
+              date : DateTime [UK]
+            </text>
+            <text x="60" y="158" font-size="16" fill="#333">
+              createdAt : DateTime
+            </text>
 
-            <rect x="580" y="40" width="300" height="150" rx="10" fill="#ffffff" stroke="#4a6572" stroke-width="2"></rect>
-            <rect x="580" y="40" width="300" height="36" rx="10" fill="#e7f0f4"></rect>
-            <text x="600" y="64" font-size="20" font-weight="700" fill="#2f4858">Slot</text>
-            <text x="600" y="102" font-size="16" fill="#333">id : Int [PK]</text>
-            <text x="600" y="130" font-size="16" fill="#333">scheduleId : Int [FK]</text>
-            <text x="600" y="158" font-size="16" fill="#333">startTime / endTime : DateTime</text>
+            <rect
+              x="580"
+              y="40"
+              width="300"
+              height="150"
+              rx="10"
+              fill="#ffffff"
+              stroke="#4a6572"
+              stroke-width="2"
+            ></rect>
+            <rect
+              x="580"
+              y="40"
+              width="300"
+              height="36"
+              rx="10"
+              fill="#e7f0f4"
+            ></rect>
+            <text
+              x="600"
+              y="64"
+              font-size="20"
+              font-weight="700"
+              fill="#2f4858"
+            >
+              Slot
+            </text>
+            <text x="600" y="102" font-size="16" fill="#333">
+              id : Int [PK]
+            </text>
+            <text x="600" y="130" font-size="16" fill="#333">
+              scheduleId : Int [FK]
+            </text>
+            <text x="600" y="158" font-size="16" fill="#333">
+              startTime / endTime : DateTime
+            </text>
 
-            <rect x="40" y="280" width="360" height="260" rx="10" fill="#ffffff" stroke="#4a6572" stroke-width="2"></rect>
-            <rect x="40" y="280" width="360" height="36" rx="10" fill="#e7f0f4"></rect>
-            <text x="60" y="304" font-size="20" font-weight="700" fill="#2f4858">Reservation</text>
-            <text x="60" y="342" font-size="16" fill="#333">id : String [PK]</text>
-            <text x="60" y="370" font-size="16" fill="#333">slotId : Int [FK]</text>
-            <text x="60" y="398" font-size="16" fill="#333">roomId : Int [FK]</text>
-            <text x="60" y="426" font-size="16" fill="#333">personName / grade / className</text>
-            <text x="60" y="454" font-size="16" fill="#333">purpose / numberOfUsers / note</text>
-            <text x="60" y="482" font-size="16" fill="#333">status : ReservationStatus</text>
-            <text x="60" y="510" font-size="16" fill="#333">createdAt / updatedAt : DateTime</text>
+            <rect
+              x="40"
+              y="280"
+              width="360"
+              height="260"
+              rx="10"
+              fill="#ffffff"
+              stroke="#4a6572"
+              stroke-width="2"
+            ></rect>
+            <rect
+              x="40"
+              y="280"
+              width="360"
+              height="36"
+              rx="10"
+              fill="#e7f0f4"
+            ></rect>
+            <text
+              x="60"
+              y="304"
+              font-size="20"
+              font-weight="700"
+              fill="#2f4858"
+            >
+              Reservation
+            </text>
+            <text x="60" y="342" font-size="16" fill="#333">
+              id : String [PK]
+            </text>
+            <text x="60" y="370" font-size="16" fill="#333">
+              slotId : Int [FK]
+            </text>
+            <text x="60" y="398" font-size="16" fill="#333">
+              roomId : Int [FK]
+            </text>
+            <text x="60" y="426" font-size="16" fill="#333">
+              personName / grade / className
+            </text>
+            <text x="60" y="454" font-size="16" fill="#333">
+              purpose / numberOfUsers / note
+            </text>
+            <text x="60" y="482" font-size="16" fill="#333">
+              status : ReservationStatus
+            </text>
+            <text x="60" y="510" font-size="16" fill="#333">
+              createdAt / updatedAt : DateTime
+            </text>
 
-            <rect x="520" y="320" width="300" height="180" rx="10" fill="#ffffff" stroke="#4a6572" stroke-width="2"></rect>
-            <rect x="520" y="320" width="300" height="36" rx="10" fill="#e7f0f4"></rect>
-            <text x="540" y="344" font-size="20" font-weight="700" fill="#2f4858">Room</text>
-            <text x="540" y="382" font-size="16" fill="#333">id : Int [PK]</text>
-            <text x="540" y="410" font-size="16" fill="#333">number : String [UK]</text>
-            <text x="540" y="438" font-size="16" fill="#333">name : String</text>
-            <text x="540" y="466" font-size="16" fill="#333">capacity : Int</text>
+            <rect
+              x="520"
+              y="320"
+              width="300"
+              height="180"
+              rx="10"
+              fill="#ffffff"
+              stroke="#4a6572"
+              stroke-width="2"
+            ></rect>
+            <rect
+              x="520"
+              y="320"
+              width="300"
+              height="36"
+              rx="10"
+              fill="#e7f0f4"
+            ></rect>
+            <text
+              x="540"
+              y="344"
+              font-size="20"
+              font-weight="700"
+              fill="#2f4858"
+            >
+              Room
+            </text>
+            <text x="540" y="382" font-size="16" fill="#333">
+              id : Int [PK]
+            </text>
+            <text x="540" y="410" font-size="16" fill="#333">
+              number : String [UK]
+            </text>
+            <text x="540" y="438" font-size="16" fill="#333">
+              name : String
+            </text>
+            <text x="540" y="466" font-size="16" fill="#333">
+              capacity : Int
+            </text>
 
-            <line x1="340" y1="115" x2="580" y2="115" stroke="#4a6572" stroke-width="3" marker-end="url(#arrow)"></line>
-            <text x="427" y="102" font-size="15" font-weight="700" fill="#2f4858">1 : N</text>
+            <line
+              x1="340"
+              y1="115"
+              x2="580"
+              y2="115"
+              stroke="#4a6572"
+              stroke-width="3"
+              marker-end="url(#arrow)"
+            ></line>
+            <text
+              x="427"
+              y="102"
+              font-size="15"
+              font-weight="700"
+              fill="#2f4858"
+            >
+              1 : N
+            </text>
             <text x="406" y="136" font-size="14" fill="#555">has_many</text>
 
-            <line x1="690" y1="190" x2="260" y2="280" stroke="#4a6572" stroke-width="3" marker-end="url(#arrow)"></line>
-            <text x="470" y="215" font-size="15" font-weight="700" fill="#2f4858">1 : N</text>
+            <line
+              x1="690"
+              y1="190"
+              x2="260"
+              y2="280"
+              stroke="#4a6572"
+              stroke-width="3"
+              marker-end="url(#arrow)"
+            ></line>
+            <text
+              x="470"
+              y="215"
+              font-size="15"
+              font-weight="700"
+              fill="#2f4858"
+            >
+              1 : N
+            </text>
             <text x="448" y="247" font-size="14" fill="#555">has_many</text>
 
-            <line x1="520" y1="410" x2="400" y2="410" stroke="#4a6572" stroke-width="3" marker-end="url(#arrow)"></line>
-            <text x="445" y="395" font-size="15" font-weight="700" fill="#2f4858">1 : N</text>
+            <line
+              x1="520"
+              y1="410"
+              x2="400"
+              y2="410"
+              stroke="#4a6572"
+              stroke-width="3"
+              marker-end="url(#arrow)"
+            ></line>
+            <text
+              x="445"
+              y="395"
+              font-size="15"
+              font-weight="700"
+              fill="#2f4858"
+            >
+              1 : N
+            </text>
             <text x="422" y="432" font-size="14" fill="#555">has_many</text>
           </svg>
         </div>
 
         <h3 id="sec-4-2">4.2 モデル定義</h3>
-
-        <h4>Schedule</h4>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>フィールド</th>
-                <th>型</th>
-                <th>制約</th>
-                <th>説明</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>id</td>
-                <td>Int</td>
-                <td>PK, autoincrement</td>
-                <td>スケジュールID</td>
-              </tr>
-              <tr>
-                <td>date</td>
-                <td>DateTime</td>
-                <td>unique</td>
-                <td>日付</td>
-              </tr>
-              <tr>
-                <td>slots</td>
-                <td>Slot[]</td>
-                <td>relation</td>
-                <td>時間枠</td>
-              </tr>
-              <tr>
-                <td>createdAt</td>
-                <td>DateTime</td>
-                <td>default(now())</td>
-                <td>作成日時</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h4>Slot</h4>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>フィールド</th>
-                <th>型</th>
-                <th>制約</th>
-                <th>説明</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>id</td>
-                <td>Int</td>
-                <td>PK, autoincrement</td>
-                <td>時間枠ID</td>
-              </tr>
-              <tr>
-                <td>scheduleId</td>
-                <td>Int</td>
-                <td>FK</td>
-                <td>スケジュールID</td>
-              </tr>
-              <tr>
-                <td>startTime</td>
-                <td>DateTime</td>
-                <td></td>
-                <td>開始時刻</td>
-              </tr>
-              <tr>
-                <td>endTime</td>
-                <td>DateTime</td>
-                <td></td>
-                <td>終了時刻</td>
-              </tr>
-              <tr>
-                <td>reservations</td>
-                <td>Reservation[]</td>
-                <td>relation</td>
-                <td>予約</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
 
         <h4>Reservation</h4>
         <div class="table-wrap">
@@ -876,52 +957,22 @@
                 <td>予約ID</td>
               </tr>
               <tr>
-                <td>slotId</td>
+                <td>slotId / roomId</td>
                 <td>Int</td>
                 <td>FK</td>
-                <td>時間枠ID</td>
+                <td>時間枠ID / 部屋ID</td>
               </tr>
               <tr>
-                <td>roomId</td>
-                <td>Int</td>
-                <td>FK</td>
-                <td>部屋ID</td>
-              </tr>
-              <tr>
-                <td>personName</td>
+                <td>personName / grade / className</td>
                 <td>String</td>
                 <td>必須</td>
-                <td>予約者名</td>
+                <td>予約者情報</td>
               </tr>
               <tr>
-                <td>grade</td>
-                <td>String</td>
-                <td>必須</td>
-                <td>学年</td>
-              </tr>
-              <tr>
-                <td>className</td>
-                <td>String</td>
-                <td>必須</td>
-                <td>クラス名</td>
-              </tr>
-              <tr>
-                <td>purpose</td>
-                <td>String?</td>
+                <td>purpose / numberOfUsers / note</td>
+                <td>String? / Int?</td>
                 <td>任意</td>
-                <td>利用目的</td>
-              </tr>
-              <tr>
-                <td>numberOfUsers</td>
-                <td>Int?</td>
-                <td>任意</td>
-                <td>利用人数</td>
-              </tr>
-              <tr>
-                <td>note</td>
-                <td>String?</td>
-                <td>任意</td>
-                <td>備考</td>
+                <td>利用詳細</td>
               </tr>
               <tr>
                 <td>status</td>
@@ -929,70 +980,12 @@
                 <td>default(PENDING)</td>
                 <td>ステータス</td>
               </tr>
-              <tr>
-                <td>createdAt</td>
-                <td>DateTime</td>
-                <td>default(now())</td>
-                <td>作成日時</td>
-              </tr>
-              <tr>
-                <td>updatedAt</td>
-                <td>DateTime</td>
-                <td>updatedAt</td>
-                <td>更新日時</td>
-              </tr>
             </tbody>
           </table>
         </div>
         <p>複合ユニーク制約: <code>@@unique([slotId, roomId])</code></p>
 
-        <h4>Room</h4>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>フィールド</th>
-                <th>型</th>
-                <th>制約</th>
-                <th>説明</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>id</td>
-                <td>Int</td>
-                <td>PK, autoincrement</td>
-                <td>部屋ID</td>
-              </tr>
-              <tr>
-                <td>number</td>
-                <td>String</td>
-                <td>unique</td>
-                <td>部屋番号</td>
-              </tr>
-              <tr>
-                <td>name</td>
-                <td>String</td>
-                <td>必須</td>
-                <td>部屋名</td>
-              </tr>
-              <tr>
-                <td>capacity</td>
-                <td>Int</td>
-                <td>必須</td>
-                <td>定員</td>
-              </tr>
-              <tr>
-                <td>reservations</td>
-                <td>Reservation[]</td>
-                <td>relation</td>
-                <td>予約</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h4>ReservationStatus</h4>
+        <h4>ReservationStatus (Enum)</h4>
         <div class="table-wrap">
           <table>
             <thead>
@@ -1021,14 +1014,6 @@
             </tbody>
           </table>
         </div>
-
-        <h3 id="sec-4-3">4.3 Prisma Client 構成</h3>
-        <ul>
-          <li><code>src/lib/prisma.ts</code> で PrismaClient をシングルトンとして管理</li>
-          <li><code>withAccelerate()</code> により拡張</li>
-          <li>非 production 環境では <code>globalThis</code> に PrismaClient を保持</li>
-          <li>ログ設定: <code>query</code>, <code>info</code>, <code>warn</code>, <code>error</code></li>
-        </ul>
       </section>
 
       <section id="sec-5">
@@ -1041,63 +1026,33 @@
               <tr>
                 <th>メソッド</th>
                 <th>パス</th>
-                <th>ファイル</th>
                 <th>機能</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>GET</td>
-                <td>/api/room</td>
-                <td><code>src/app/api/room/route.ts</code></td>
-                <td>部屋一覧取得</td>
-              </tr>
-              <tr>
-                <td>POST</td>
-                <td>/api/room</td>
-                <td><code>src/app/api/room/route.ts</code></td>
-                <td>部屋作成</td>
-              </tr>
-              <tr>
-                <td>GET</td>
+                <td>GET / POST</td>
                 <td>/api/reservations</td>
-                <td><code>src/app/api/reservations/route.ts</code></td>
-                <td>予約一覧取得</td>
+                <td>予約一覧取得 / 単一・一括予約作成</td>
               </tr>
               <tr>
-                <td>POST</td>
-                <td>/api/reservations</td>
-                <td><code>src/app/api/reservations/route.ts</code></td>
-                <td>単一予約または一括予約作成</td>
-              </tr>
-              <tr>
-                <td>PATCH</td>
+                <td>PATCH / DELETE</td>
                 <td>/api/reservations/[id]</td>
-                <td><code>src/app/api/reservations/[id]/route.ts</code></td>
-                <td>ステータス更新</td>
-              </tr>
-              <tr>
-                <td>DELETE</td>
-                <td>/api/reservations/[id]</td>
-                <td><code>src/app/api/reservations/[id]/route.ts</code></td>
-                <td>予約削除</td>
+                <td>ステータス更新 / 予約削除</td>
               </tr>
               <tr>
                 <td>POST</td>
                 <td>/api/reservations/bulk</td>
-                <td><code>src/app/api/reservations/bulk/route.ts</code></td>
                 <td>一括予約作成</td>
               </tr>
               <tr>
                 <td>PATCH</td>
                 <td>/api/reservations/status</td>
-                <td><code>src/app/api/reservations/status/route.ts</code></td>
                 <td>承認・却下</td>
               </tr>
               <tr>
                 <td>GET</td>
                 <td>/api/timeline</td>
-                <td><code>src/app/api/timeline/route.ts</code></td>
                 <td>タイムラインデータ取得</td>
               </tr>
             </tbody>
@@ -1105,67 +1060,31 @@
         </div>
 
         <h3 id="sec-5-2">5.2 APIごとの確認事項</h3>
-
-        <h4>GET <code>/api/reservations</code></h4>
         <ul>
-          <li>クエリパラメータ: <code>status</code></li>
           <li>
-            <code>ALL</code> 以外は <code>PENDING</code>, <code>APPROVED</code>, <code>REJECTED</code>,
-            <code>CANCELLED</code> を判定
+            <strong>POST <code>/api/reservations/bulk</code></strong
+            >: <code>new Map()</code> により重複スロットを排除。<code
+              >APPROVED</code
+            >
+            の既存予約を対象に重複チェックを行い、Prisma
+            <code>P2002</code> のエラーハンドリングを実装。
           </li>
-          <li><code>createdAt</code> 降順で返却</li>
-          <li><code>room.name</code>, <code>room.number</code>, <code>slot.startTime</code> を含む</li>
-        </ul>
-
-        <h4>POST <code>/api/reservations</code></h4>
-        <ul>
-          <li>単一予約と一括予約の両方に対応</li>
-          <li>一括予約判定は <code>Array.isArray(body.slots)</code></li>
-          <li>一括予約では Prisma の <code>$transaction</code> を使用</li>
-          <li><code>REJECTED</code> / <code>CANCELLED</code> 以外の既存予約を重複判定対象にする</li>
-        </ul>
-
-        <h4>PATCH <code>/api/reservations/[id]</code></h4>
-        <ul>
-          <li>受け付けるステータス: <code>APPROVED</code>, <code>REJECTED</code>, <code>CANCELLED</code></li>
-          <li>ソースコード内に権限チェック未実装の TODO コメントあり</li>
-        </ul>
-
-        <h4>DELETE <code>/api/reservations/[id]</code></h4>
-        <ul>
-          <li>成功時は <code>204 No Content</code></li>
-          <li>Prisma <code>P2025</code> を捕捉して <code>404</code> を返却</li>
-          <li>ソースコード内に管理者権限チェック未実装の TODO コメントあり</li>
-        </ul>
-
-        <h4>POST <code>/api/reservations/bulk</code></h4>
-        <ul>
-          <li><code>new Map()</code> により重複スロットを排除</li>
-          <li><code>APPROVED</code> の既存予約を対象に重複チェック</li>
-          <li>Prisma <code>P2002</code> のエラーハンドリングあり</li>
-        </ul>
-
-        <h4>PATCH <code>/api/reservations/status</code></h4>
-        <ul>
-          <li><code>APPROVED</code> 時は同一 <code>slotId</code>・<code>roomId</code> の承認済み予約を確認</li>
-          <li><code>REJECTED</code> 時は対象予約を物理削除し <code>204</code> を返却</li>
-        </ul>
-
-        <h4>GET <code>/api/timeline</code></h4>
-        <ul>
-          <li>クエリパラメータ <code>date=YYYY-MM-DD</code> が必須</li>
-          <li>該当日の schedule がなければその場で作成</li>
           <li>
-            1日 7 コマ（<code>09:10</code>, <code>10:50</code>, <code>13:10</code>, <code>14:50</code>,
-            <code>16:30</code>, <code>18:10</code>, <code>19:50</code>）
+            <strong>PATCH <code>/api/reservations/status</code></strong
+            >: <code>APPROVED</code> 時は同一 <code>slotId</code>・<code
+              >roomId</code
+            >
+            の承認済み予約を確認。<code>REJECTED</code> 時は対象予約を物理削除し
+            <code>204</code> を返却。
           </li>
-          <li>各コマは 90 分</li>
-          <li><code>APPROVED</code> の予約のみ返却</li>
-          <li>部屋は <code>number</code> 昇順で取得</li>
+          <li>
+            <strong>GET <code>/api/timeline</code></strong
+            >: クエリパラメータ <code>date=YYYY-MM-DD</code> が必須。該当日の
+            schedule がなければその場で作成。1日 7 コマ（90分）の枠を生成。
+          </li>
         </ul>
 
         <h3 id="sec-5-3">5.3 APIフロー</h3>
-        <p><code>src/app/api/API.md</code> に記載の流れ。</p>
         <pre><code>[ブラウザ / fetch]
    ↓  HTTPリクエスト (GET /api/...)
 [Next.js API Route Handler]
@@ -1178,493 +1097,114 @@
 
       <section id="sec-6">
         <h2>6. 画面構成</h2>
+        <p>
+          ※
+          実際の画面イメージについては、前半の「画面イメージ」セクションを参照してください。
+        </p>
 
-        <h3 id="sec-6-1">6.1 ページ一覧</h3>
+        <h3 id="sec-6-1">6.1 ページ一覧と機能</h3>
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
                 <th>パス</th>
-                <th>ファイル</th>
+                <th>コンポーネント</th>
                 <th>内容</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><code>/</code></td>
-                <td><code>src/app/page.tsx</code></td>
-                <td><code>TimelinePage</code> を表示</td>
-              </tr>
-              <tr>
-                <td><code>/timeline</code></td>
-                <td><code>src/app/timeline/page.tsx</code></td>
-                <td>タイムライン画面</td>
+                <td><code>/</code> または <code>/timeline</code></td>
+                <td>TimelinePage</td>
+                <td>
+                  タイムライン画面。カレンダー、フロアフィルター、予約実行UIを備え、スロット選択後に一括予約を実行。
+                </td>
               </tr>
               <tr>
                 <td><code>/History</code></td>
-                <td><code>src/app/History/page.tsx</code></td>
-                <td>予約履歴画面</td>
+                <td>HistoryPage</td>
+                <td>
+                  予約履歴画面。ステータス別（PENDING, APPROVED
+                  等）にタブで一覧表示し、キャンセル機能を提供。
+                </td>
               </tr>
               <tr>
                 <td><code>/adminPanel</code></td>
-                <td><code>src/app/adminPanel/page.tsx</code></td>
-                <td>予約承認管理画面</td>
+                <td>AdminPanelPage</td>
+                <td>
+                  予約承認管理画面。申請中予約のみを取得し、承認・却下操作を行う。
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
-
-        <h3 id="sec-6-2">6.2 ページごとの確認内容</h3>
-
-        <h4><code>/</code></h4>
-        <ul>
-          <li><code>TimelinePage</code> を <code>&lt;main&gt;</code> 内でレンダリング</li>
-        </ul>
-
-        <h4><code>/timeline</code></h4>
-        <ul>
-          <li>クライアントコンポーネント</li>
-          <li>左側にカレンダー、フロアフィルター、予約実行UI</li>
-          <li>右側にタイムライン表示</li>
-          <li><code>fetch(/api/timeline?date=...)</code> でデータ取得</li>
-          <li>スロット選択後、ダイアログ入力を経て <code>POST /api/reservations/bulk</code> を実行</li>
-          <li><code>className</code> 送信時に <code>"カレッジ"</code> を付与</li>
-          <li>
-            フィルタ条件:
-            <ul>
-              <li><code>10F</code>: <code>room.number.startsWith("10")</code></li>
-              <li><code>11F</code>: <code>room.number.startsWith("11")</code></li>
-              <li><code>other</code>: 上記以外</li>
-            </ul>
-          </li>
-        </ul>
-
-        <h4><code>/History</code></h4>
-        <ul>
-          <li>クライアントコンポーネント</li>
-          <li>
-            ステータスタブ: <code>ALL</code>, <code>PENDING</code>, <code>APPROVED</code>, <code>REJECTED</code>,
-            <code>CANCELLED</code>
-          </li>
-          <li><code>GET /api/reservations?status=...</code> で一覧取得</li>
-          <li>詳細ダイアログあり</li>
-          <li><code>PATCH /api/reservations/{id}</code> に <code>status: "CANCELLED"</code> を送ってキャンセル</li>
-          <li>デスクトップではテーブル、モバイルではカード表示</li>
-        </ul>
-
-        <h4><code>/adminPanel</code></h4>
-        <ul>
-          <li>クライアントコンポーネント</li>
-          <li><code>GET /api/reservations?status=PENDING</code> で申請中のみ取得</li>
-          <li><code>PATCH /api/reservations/{id}</code> により <code>APPROVED</code> / <code>REJECTED</code> を更新</li>
-        </ul>
-
-        <h3 id="sec-6-3">6.3 レイアウト</h3>
-        <ul>
-          <li><code>src/app/layout.tsx</code> で全体を定義</li>
-          <li><code>Header</code> を全ページ共通で表示</li>
-          <li><code>Toaster</code> を <code>top-center</code> に配置</li>
-          <li><code>metadata.title</code> は「予約アプリ」</li>
-        </ul>
-
-        <h3 id="sec-6-4">6.4 画面イメージ（スクリーンショット）</h3>
-        <p>以下の画像は、実際の画面構成を把握しやすくするための参考資料である。</p>
-
-<section>
-  <figure>
-    <img src="./タイムライン.png" alt="予約状況タイムライン" data-height-listener-added="true" onclick="openModal(this)" cursor: pointer;">
-    <figcaption>予約状況タイムライン（クリックで拡大）</figcaption>
-  </figure>
-
-  <figure>
-    <img src="./予約情報の入力.png" alt="予約情報の入力ダイアログ" data-height-listener-added="true" onclick="openModal(this)" cursor: pointer;">
-    <figcaption>予約情報の入力ダイアログ（クリックで拡大）</figcaption>
-  </figure>
-
-  <figure>
-    <img src="./予約できた画面.png" alt="予約済みスロット表示例" data-height-listener-added="true" onclick="openModal(this)" cursor: pointer;">
-    <figcaption>予約済みスロット表示例（クリックで拡大）</figcaption>
-  </figure>
-
-  <figure>
-    <img src="./予約ログ.png" alt="予約履歴画面" data-height-listener-added="true" onclick="openModal(this)" cursor: pointer;">
-    <figcaption>予約履歴画面（クリックで拡大）</figcaption>
-  </figure>
-
-  <figure>
-    <img src="./予約了承管理画面.png" alt="予約承認管理画面" data-height-listener-added="true" onclick="openModal(this)" cursor: pointer;">
-    <figcaption>予約承認管理画面（クリックで拡大）</figcaption>
-  </figure>
-</section>
-
-<dialog id="imageModal" onclick="this.close()" style="border: none; padding: 0; background: transparent; max-width: 90vw; max-height: 90vh;">
-  <img id="modalImage" src="" alt="" style="max-width: 100%; max-height: 90vh; display: block; margin: auto; cursor: zoom-out;">
-</dialog>
-
-<script>
-  function openModal(imgElement) {
-    const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImage');
-    
-    // クリックされた画像のパス(src)と代替テキスト(alt)を、ダイアログ内の画像にセット
-    modalImg.src = imgElement.src;
-    modalImg.alt = imgElement.alt + " 拡大";
-    
-    // ダイアログを表示
-    modal.showModal();
-  }
-</script>
+      </section>
 
       <section id="sec-7">
         <h2>7. 主要コンポーネント</h2>
 
         <h3 id="sec-7-1">ReservationTimeline.tsx</h3>
         <ul>
-          <li>7コマ分のテーブルを描画</li>
-          <li>部屋列は <code>sticky left-0</code></li>
-          <li>予約済みセルには用途・予約者名・学年/クラス・キャンセルボタンを表示</li>
-          <li>空きセルはクリックで選択状態を切り替え</li>
-          <li>キャンセル時は <code>AlertDialog</code> 表示後に <code>DELETE /api/reservations/{id}</code> を実行</li>
+          <li>
+            7コマ分のテーブルを描画し、部屋列は
+            <code>sticky left-0</code> で固定。
+          </li>
+          <li>
+            予約済みセルには用途・予約者名・学年/クラス・キャンセルボタンを表示。
+          </li>
+          <li>空きセルはクリックで選択状態を切り替え。</li>
         </ul>
 
         <h3 id="sec-7-2">ReservationDialog.tsx</h3>
         <ul>
-          <li>予約入力ダイアログ</li>
-          <li>必須入力: 学年, カレッジ, 予約代表者名</li>
-          <li>任意入力: 用途名, 利用人数, 備考</li>
-          <li>学年選択肢: 1年 / 2年 / 3年 / 研究生 / 教職員 / 外部</li>
           <li>
-            カレッジ選択肢: ヘアメイク / フィッシング / ミュージック / バスケット / パフォーミングアーツ / e-Sports /
-            ゲーム / マンガ・イラスト / IT / 動画クリエーター / チャイルドケア / スポーツ / デザイン / 高校
+            予約入力ダイアログ。必須入力（学年, カレッジ,
+            予約代表者名）と任意入力（用途名, 利用人数, 備考）を収集。
           </li>
-          <li>利用人数は数値のみ入力可</li>
-        </ul>
-
-        <h3 id="sec-7-3">History page</h3>
-        <ul>
-          <li>予約履歴の表示</li>
-          <li>ステータス別表示</li>
-          <li>詳細ダイアログ表示</li>
-          <li>モバイル/デスクトップでレイアウト切替</li>
-        </ul>
-
-        <h3 id="sec-7-4">AdminPanel page</h3>
-        <ul>
-          <li>申請中予約の一覧表示</li>
-          <li>承認・却下ボタンを提供</li>
+          <li>学年やカレッジはプルダウン選択肢として提供。</li>
         </ul>
       </section>
 
       <section id="sec-8">
         <h2>8. シードデータ</h2>
-
-        <h3 id="sec-8-1">8.1 時間枠</h3>
-        <p><code>prisma/seed.ts</code> の <code>timeSlots</code> と <code>classDurationMinutes</code> に基づく。</p>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>開始</th>
-                <th>終了</th>
-                <th>時間</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>09:10</td>
-                <td>10:40</td>
-                <td>90分</td>
-              </tr>
-              <tr>
-                <td>10:50</td>
-                <td>12:20</td>
-                <td>90分</td>
-              </tr>
-              <tr>
-                <td>13:10</td>
-                <td>14:40</td>
-                <td>90分</td>
-              </tr>
-              <tr>
-                <td>14:50</td>
-                <td>16:20</td>
-                <td>90分</td>
-              </tr>
-              <tr>
-                <td>16:30</td>
-                <td>18:00</td>
-                <td>90分</td>
-              </tr>
-              <tr>
-                <td>18:10</td>
-                <td>19:40</td>
-                <td>90分</td>
-              </tr>
-              <tr>
-                <td>19:50</td>
-                <td>21:20</td>
-                <td>90分</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3 id="sec-8-2">8.2 教室データ（37件）</h3>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>部屋番号</th>
-                <th>部屋名</th>
-                <th>定員</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>B101(L)</td>
-                <td>ホール</td>
-                <td>100</td>
-              </tr>
-              <tr>
-                <td>B104①②③</td>
-                <td>REC室</td>
-                <td>20</td>
-              </tr>
-              <tr>
-                <td>B112</td>
-                <td>レクチャー&amp;スタジオ</td>
-                <td>24</td>
-              </tr>
-              <tr>
-                <td>B113</td>
-                <td>トレーニングR</td>
-                <td>15</td>
-              </tr>
-              <tr>
-                <td>901</td>
-                <td>レクチャー</td>
-                <td>24</td>
-              </tr>
-              <tr>
-                <td>1001</td>
-                <td>レクチャー</td>
-                <td>36</td>
-              </tr>
-              <tr>
-                <td>1002</td>
-                <td>CATIA</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>1003</td>
-                <td>レクチャー</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>1004</td>
-                <td>レクチャー</td>
-                <td>0</td>
-              </tr>
-              <tr>
-                <td>1005</td>
-                <td>レクチャー</td>
-                <td>24</td>
-              </tr>
-              <tr>
-                <td>1006</td>
-                <td>レクチャー</td>
-                <td>24</td>
-              </tr>
-              <tr>
-                <td>1007</td>
-                <td>レクチャー</td>
-                <td>24</td>
-              </tr>
-              <tr>
-                <td>1008</td>
-                <td>レクチャー</td>
-                <td>17</td>
-              </tr>
-              <tr>
-                <td>1009</td>
-                <td>MAC</td>
-                <td>18</td>
-              </tr>
-              <tr>
-                <td>1010</td>
-                <td>win</td>
-                <td>14</td>
-              </tr>
-              <tr>
-                <td>1011</td>
-                <td>音響(防音)</td>
-                <td>20</td>
-              </tr>
-              <tr>
-                <td>1012</td>
-                <td>win</td>
-                <td>18</td>
-              </tr>
-              <tr>
-                <td>1013</td>
-                <td>win(CG)</td>
-                <td>19</td>
-              </tr>
-              <tr>
-                <td>1014</td>
-                <td>win</td>
-                <td>17</td>
-              </tr>
-              <tr>
-                <td>1101</td>
-                <td>レクチャー</td>
-                <td>40</td>
-              </tr>
-              <tr>
-                <td>1102</td>
-                <td>レクチャー</td>
-                <td>40</td>
-              </tr>
-              <tr>
-                <td>1103</td>
-                <td>レクチャー</td>
-                <td>20</td>
-              </tr>
-              <tr>
-                <td>1104</td>
-                <td>レクチャー</td>
-                <td>21</td>
-              </tr>
-              <tr>
-                <td>1105</td>
-                <td>レクチャー</td>
-                <td>12</td>
-              </tr>
-              <tr>
-                <td>1106</td>
-                <td>メイク</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>1107</td>
-                <td>メイク</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>1108</td>
-                <td>デザイン工房</td>
-                <td>20</td>
-              </tr>
-              <tr>
-                <td>1109</td>
-                <td>工作室</td>
-                <td>30</td>
-              </tr>
-              <tr>
-                <td>1110</td>
-                <td>動画CR</td>
-                <td>20</td>
-              </tr>
-              <tr>
-                <td>1111</td>
-                <td>レクチャー</td>
-                <td>24</td>
-              </tr>
-              <tr>
-                <td>1112</td>
-                <td>レクチャー</td>
-                <td>30</td>
-              </tr>
-              <tr>
-                <td>1113</td>
-                <td>レクチャー</td>
-                <td>24</td>
-              </tr>
-              <tr>
-                <td>1201</td>
-                <td>スタジオ</td>
-                <td>40</td>
-              </tr>
-              <tr>
-                <td>1202(L)</td>
-                <td>レクチャー</td>
-                <td>49</td>
-              </tr>
-              <tr>
-                <td>1204(L)</td>
-                <td>e-Sports</td>
-                <td>10</td>
-              </tr>
-              <tr>
-                <td>1206</td>
-                <td>スタジオ</td>
-                <td>30</td>
-              </tr>
-              <tr>
-                <td>1207</td>
-                <td>スタジオ</td>
-                <td>30</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h3 id="sec-8-3">8.3 シード処理</h3>
+        <p>
+          <code>prisma/seed.ts</code>
+          に基づき、初期データとして以下の構成を作成しています。
+        </p>
         <ul>
           <li>
-            既存データを <code>reservation</code>, <code>slot</code>, <code>schedule</code>,
-            <code>room</code> の順で削除
+            <strong>時間枠</strong>: 09:10 開始〜 21:20
+            終了までの全7コマ（各90分）。
           </li>
-          <li>部屋データを作成</li>
-          <li>当日から 30 日分の <code>schedule</code> と <code>slot</code> を作成</li>
+          <li>
+            <strong>教室データ</strong>:
+            レクチャー室、スタジオ、MACルーム、ホールなど全37件の部屋情報（定員設定付き）。
+          </li>
+          <li>
+            <strong>シード処理</strong>: 当日から 30 日分の
+            <code>schedule</code> と <code>slot</code> を自動生成。
+          </li>
         </ul>
       </section>
 
       <section id="sec-9">
         <h2>9. Docker構成</h2>
-
-        <h3 id="sec-9-1">9.1 docker-compose.yml</h3>
-        <pre><code>services:
-  2mongodb:
-    image: postgres:14
-    container_name: 2mongodb
-    restart: always
-    environment:
-      POSTGRES_USER: tt
-      POSTGRES_PASSWORD: tt
-      POSTGRES_DB: DB
-    volumes:
-      - db:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
-
-networks:
-  default:
-    name: npg_net
-
-volumes:
-  db:
-    driver: local</code></pre>
-        <p>確認できる事項:</p>
+        <p>
+          <code>docker-compose.yml</code>
+          に基づき、データベース環境をコンテナ化しています。
+        </p>
         <ul>
-          <li>PostgreSQL 14 を使用</li>
-          <li>コンテナ名は <code>2mongodb</code></li>
-          <li>永続化ボリューム <code>db</code> を使用</li>
-          <li>ネットワーク名は <code>npg_net</code></li>
-          <li>Next.js サービス定義はコメントアウトされている</li>
-        </ul>
-
-        <h3 id="sec-9-2">9.2 docker-compose-prod.yml</h3>
-        <ul>
-          <li>PostgreSQL 14 を使用</li>
-          <li><code>POSTGRES_USER=tt</code></li>
-          <li><code>POSTGRES_PASSWORD=tt</code></li>
-          <li><code>POSTGRES_DATABASE=DB</code></li>
-          <li><code>Dockerfile.next.js.prod</code> を参照する Next.js サービス定義がコメントとして記載されている</li>
+          <li>
+            PostgreSQL 14 を使用し、永続化ボリューム
+            <code>db</code> をマウント。
+          </li>
+          <li>
+            アプリケーション本体（Next.js）用の
+            <code>Dockerfile.next.js</code> および本番用 Dockerfile
+            もリポジトリ内に用意。
+          </li>
         </ul>
       </section>
-
-      <hr>
 
       <section id="sec-10">
         <h2>10. npmスクリプト</h2>
@@ -1679,43 +1219,30 @@ volumes:
             <tbody>
               <tr>
                 <td><code>npm run dev</code></td>
-                <td><code>next dev -p 3300</code></td>
+                <td>
+                  ローカル開発サーバー起動 (<code>next dev -p 3300</code>)
+                </td>
               </tr>
               <tr>
                 <td><code>npm run build</code></td>
-                <td><code>next build</code></td>
-              </tr>
-              <tr>
-                <td><code>npm run start</code></td>
-                <td><code>next start</code></td>
-              </tr>
-              <tr>
-                <td><code>npm run lint</code></td>
-                <td><code>next lint</code></td>
-              </tr>
-              <tr>
-                <td><code>npm run prisma</code></td>
-                <td><code>prisma</code></td>
+                <td>プロダクションビルド (<code>next build</code>)</td>
               </tr>
               <tr>
                 <td><code>npm run db:seed</code></td>
-                <td><code>tsx prisma/seed.ts</code></td>
+                <td>初期データ投入 (<code>tsx prisma/seed.ts</code>)</td>
               </tr>
               <tr>
                 <td><code>npm run studio</code></td>
-                <td><code>prisma studio --port 5555</code></td>
+                <td>Prisma Studio 起動 (DBデータ閲覧用)</td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      <hr>
-
       <section id="sec-11">
         <h2>11. 環境構築時に確認できるコマンド</h2>
-        <p>以下はリポジトリ内の設定ファイル・README・package.json から確認できるコマンド例。</p>
-        <pre><code>git clone <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6d0a04192d0a041905180f430e0200">[email&#160;protected]</a>:zxswv/npg.git
+        <pre><code>git clone <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b7d0dec3f7d0dec3dfc2d599d4d8da">[email&#160;protected]</a>:zxswv/npg.git
 cd npg
 npm install
 docker-compose up -d
@@ -1723,13 +1250,7 @@ npx prisma generate
 npx prisma migrate dev
 npm run db:seed
 npm run dev</code></pre>
-        <p>
-          ※ 環境変数 <code>DATABASE_URL</code> と <code>DIRECT_URL</code> は
-          <code>prisma/schema.prisma</code> で参照されている。
-        </p>
       </section>
-
-      <hr>
 
       <section id="sec-12">
         <h2>12. マイグレーション履歴</h2>
@@ -1752,140 +1273,40 @@ npm run dev</code></pre>
               </tr>
               <tr>
                 <td>3</td>
-                <td><code>20251005061832_add_reservation_status</code></td>
+                <td>
+                  <code>20251005061832_add_reservation_status</code>
+                  (ステータス管理の導入)
+                </td>
               </tr>
               <tr>
                 <td>4</td>
-                <td><code>20251109074958_add_cancelled_status</code></td>
+                <td>
+                  <code>20251109074958_add_cancelled_status</code>
+                  (キャンセル機能の拡張)
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
       </section>
-
-      <hr>
-
-      <section id="sec-13">
-        <h2>13. 就活提出向け補足</h2>
-        <ul>
-          <li>本ドキュメントは、リポジトリ内のソースコードおよび設定ファイルから確認できた事実を中心に整理した</li><li>ER図・構成整理は、提出時にプロジェクトの全体像を説明しやすくするために付与した</li>
-          <li>画面イメージは、スクリーンショットを参考資料として掲載した</li>
-        </ul>
-      </section>
-
-      <hr>
-
-      <section id="sec-14"><h2>14. 開発体制と進め方</h2><div class="user-report"><ul>
-            <li>本アプリケーションの着想は、学校のハッカソンで取り組んだ題材を起点としている</li>
-            <li>当初は 5〜6 人規模でのチーム開発として開始した</li>
-            <li>その後、チーム開発を継続しない判断となり、現行版は本人が引き継いで 1 人で開発を進めた</li>
-            <li>
-              就活提出用の説明としては、現行版の設計・実装・改善は本人が主体となって進めたプロジェクトとして整理する
-            </li>
-            <li>
-              進め方としては、実際に利用する教員へ複数回見せてフィードバックを受け、その内容を反映しながら改善を重ねた
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <hr>
-
-      <section id="sec-15">
-        <h2>15. 工夫した点</h2>
-        <div class="user-report">
-          <h3 id="sec-15-1">15.1 現場フィードバックを前提にした改善</h3>
-          <ul>
-            <li>学校で利用する教員に実際に触ってもらい、画面や機能に対するフィードバックを受けて改善を行った</li>
-            <li>
-              初期段階ではカレンダーベースの予約画面を想定していたが、フィードバックを踏まえて部屋ベースで状況を見られる画面構成へ調整した
-            </li>
-            <li>予約申請だけでなく、教員側で確認・承認しやすい画面も追加した</li>
-            <li>就活向けには、現場の意見を受けて UI の見やすさと運用しやすさを優先して改善した点として整理できる</li>
-          </ul>
-
-          <h3 id="sec-15-2">15.2 データ構造と保守性を意識した設計</h3>
-          <ul>
-            <li>データベース操作には Prisma を採用し、スキーマを見通しやすく保ちながら変更しやすい構成を意識した</li>
-            <li>
-              <code>schema.prisma</code>
-              にモデル定義を集約することで、部屋・時間枠・予約・ステータスの関係を把握しやすい構成にしている
-            </li>
-            <li>
-              マイグレーション履歴を通じて、予約ステータスやキャンセル状態の追加を段階的に反映できる構成になっている
-            </li>
-          </ul>
-
-          <h3 id="sec-15-3">15.3 技術選定時に意識した点</h3>
-          <ul>
-            <li>Next.js を採用し、画面と API を同一プロジェクトで管理できる構成にした</li>
-            <li>Docker / Docker Compose を採用し、開発環境をそろえやすい形にした</li>
-            <li>
-              就活向けには、機能実装だけでなく、後から運用・保守しやすい構成を意識して技術選定した点として説明できる
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <hr>
-
-      <section id="sec-16">
-        <h2>16. 苦労した点</h2>
-        <div class="user-report"><h3 id="sec-16-1">16.1 予約時間の扱い</h3>
-          <ul>
-            <li>予約が重複しないように制御する実装に苦労した</li>
-            <li>
-              特に、Docker
-              上のデータベースとクライアント側で扱う日時の基準がずれ、予約処理が意図通りに動かない問題の切り分けに時間を要した
-            </li>
-            <li>UTC / 日本時間の差異により、同じ時刻を扱っているつもりでも一致しない問題が発生した</li>
-            <li>
-              ミリ秒単位の差によって別時刻として扱われ、フロントエンド上では成功したように見えても、データベース登録に失敗するケースがあった
-            </li>
-          </ul>
-
-          <h3 id="sec-16-2">16.2 データベース操作の理解</h3>
-          <ul>
-            <li>
-              初めて本格的に、データベースへ保存し、取り出し、その結果を画面へ反映するアプリケーションを作成したため、データの流れを理解するまでに時間がかかった
-            </li>
-            <li>
-              Prisma を通じてどのように PostgreSQL へアクセスし、その結果が Next.js の API
-              を経由して画面に返るのかを把握することが難しかった
-            </li>
-            <li>
-              エラー発生時に、原因がフロントエンド・API・Prisma・PostgreSQL のどこにあるのかを切り分ける点に苦労した
-            </li>
-          </ul>
-
-          <h3 id="sec-16-3">16.3 学習しながらの改善</h3>
-          <ul>
-            <li>実装時は AI の提案も参考にしながら学習と改善を並行して進めた</li>
-            <li>
-              当時はベストプラクティスを即断できる段階ではなかったため、まず動く形を作り、その後に理解を深めながら改善する進め方を取った
-            </li>
-            <li>この経験を通じて、日時処理、API、ORM、データベースの関係を実践的に学んだ</li>
-          </ul>
-        </div>
-      </section>
-
-      <hr>
-
-      <section id="sec-17"><h2>17. 
-  
-    <!--StartFragment-->今後の改善予定<!--EndFragment-->
-  
-
-</h2>チラシなどの広告も現在学校に張られているものでそれをネットで出来るかつ<br>普段関りが少ない他の専攻の学生たちと交流できるアプリにしたいと考えています。<br><br>学校の後輩たちにプロジェクトを引き続き校内でみんなが使うようなシステムにする予定です。</section>
     </main>
 
     <footer>
-      <h3>出典・注記</h3>
       <p>
-        本ドキュメントは、提供されたソースコード・設定ファイル、および自己申告に基づいて整理された就活提出用の資料です。
+        本資料は、ソースコード・設定ファイル・開発内容をもとに整理した就職活動提出用ドキュメントです。
       </p>
     </footer>
-  
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-</body></html>
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516"
+      integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg=="
+      data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
